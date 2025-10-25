@@ -1,8 +1,6 @@
-import React, { useState, useMemo } from "react";
 import {
   ChevronDown,
   ChevronUp,
-  Award,
   CheckCircle,
   XCircle,
   AlertCircle,
@@ -11,6 +9,7 @@ import {
   X,
   BookOpen,
 } from "lucide-react";
+import { useMemo, useState } from "react";
 
 const LEEDCreditsTable = () => {
   const [expandedCategory, setExpandedCategory] = useState<any>(null);
