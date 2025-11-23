@@ -1,26 +1,19 @@
-import React, { useState, useMemo } from "react";
+import  { useState } from "react";
 import {
-  Home,
-  Users,
-  Briefcase,
-  Settings,
-  LogOut,
+  
   Search,
   Bell,
-  Menu,
+  
   ChevronDown,
-  Calendar,
-  Download,
+  
   Plus,
   Eye,
-  Edit,
+ 
   Trash2,
   Star,
   PhoneCall,
   Mail,
-  MapPin,
-  X,
-  Activity,
+
 } from "lucide-react";
 import {
   Bookings,
@@ -342,43 +335,7 @@ const initialServices = [
 ];
 
 // ==================== UTILITY FUNCTIONS ====================
-const getStatusColor = (status: any) => {
-  switch (status) {
-    case "completed":
-      return theme.colors.success;
-    case "in-progress":
-      return theme.colors.primary;
-    case "pending":
-      return theme.colors.warning;
-    case "cancelled":
-      return theme.colors.danger;
-    case "active":
-      return theme.colors.success;
-    case "inactive":
-      return theme.colors.danger;
-    default:
-      return theme.colors.textSecondary;
-  }
-};
 
-const getStatusBg = (status: any) => {
-  switch (status) {
-    case "completed":
-      return "#D1FAE5";
-    case "in-progress":
-      return "#DBEAFE";
-    case "pending":
-      return "#FEF3C7";
-    case "cancelled":
-      return "#FEE2E2";
-    case "active":
-      return "#D1FAE5";
-    case "inactive":
-      return "#FEE2E2";
-    default:
-      return "#F3F4F6";
-  }
-};
 
 // ==================== SIDEBAR COMPONENT ====================
 
@@ -1003,7 +960,7 @@ const AdminPanel = () => {
   const [bookings, setBookings] = useState(initialBookings);
   const [workers, setWorkers] = useState(initialWorkers);
   const [customers, setCustomers] = useState(initialCustomers);
-  const [services, setServices] = useState(initialServices);
+  const [services] = useState<any>(initialServices);
   const [notifications, setNotifications] = useState(3);
 
   // Filters
