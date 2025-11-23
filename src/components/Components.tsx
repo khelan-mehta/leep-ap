@@ -1117,165 +1117,281 @@ export const Bookings = ({
   );
 };
 
-export const Customers = ({ customers, deleteItem, setSelectedItem, setModalType, setShowModal, filterData }) => {
-  const filteredCustomers = filterData(customers, 'customers');
+export const Customers = ({
+  customers,
+  deleteItem,
+  setSelectedItem,
+  setModalType,
+  setShowModal,
+  filterData,
+}: any) => {
+  const filteredCustomers = filterData(customers, "customers");
 
   return (
-    <div style={{ padding: '24px' }}>
-      <div style={{
-        background: theme.colors.surface,
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          marginBottom: '20px'
-        }}>
-          <h2 style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.text, margin: 0 }}>
+    <div style={{ padding: "24px" }}>
+      <div
+        style={{
+          background: theme.colors.surface,
+          borderRadius: "12px",
+          padding: "24px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: theme.colors.text,
+              margin: 0,
+            }}
+          >
             Customer Management ({filteredCustomers.length})
           </h2>
-          <button style={{
-            padding: '10px 20px',
-            background: theme.colors.primary,
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
+          <button
+            style={{
+              padding: "10px 20px",
+              background: theme.colors.primary,
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
             <Download size={18} />
             Export
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
-          {filteredCustomers.map((customer) => (
-            <div key={customer.id} style={{
-              background: theme.colors.background,
-              borderRadius: '12px',
-              padding: '20px',
-              border: `1px solid ${theme.colors.border}`
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                  <div style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '50%',
-                    background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.success})`,
-                    color: 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '20px',
-                    fontWeight: '700'
-                  }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {filteredCustomers.map((customer: any) => (
+            <div
+              key={customer.id}
+              style={{
+                background: theme.colors.background,
+                borderRadius: "12px",
+                padding: "20px",
+                border: `1px solid ${theme.colors.border}`,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "16px",
+                }}
+              >
+                <div
+                  style={{ display: "flex", gap: "12px", alignItems: "center" }}
+                >
+                  <div
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "50%",
+                      background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.success})`,
+                      color: "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "20px",
+                      fontWeight: "700",
+                    }}
+                  >
                     {customer.name.charAt(0)}
                   </div>
                   <div>
-                    <div style={{ fontSize: '16px', fontWeight: '700', color: theme.colors.text, marginBottom: '2px' }}>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "700",
+                        color: theme.colors.text,
+                        marginBottom: "2px",
+                      }}
+                    >
                       {customer.name}
                     </div>
-                    <div style={{ fontSize: '12px', color: theme.colors.textSecondary, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: theme.colors.textSecondary,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                      }}
+                    >
                       <Mail size={12} />
                       {customer.email}
                     </div>
-                    <div style={{ fontSize: '12px', color: theme.colors.textSecondary, display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: theme.colors.textSecondary,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                        marginTop: "2px",
+                      }}
+                    >
                       <PhoneCall size={12} />
                       {customer.phone}
                     </div>
                   </div>
                 </div>
-                <span style={{
-                  padding: '4px 10px',
-                  borderRadius: '20px',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  background: customer.status === 'active' ? '#D1FAE5' : '#FEE2E2',
-                  color: customer.status === 'active' ? theme.colors.success : theme.colors.danger,
-                  height: 'fit-content'
-                }}>
+                <span
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "20px",
+                    fontSize: "11px",
+                    fontWeight: "600",
+                    background:
+                      customer.status === "active" ? "#D1FAE5" : "#FEE2E2",
+                    color:
+                      customer.status === "active"
+                        ? theme.colors.success
+                        : theme.colors.danger,
+                    height: "fit-content",
+                  }}
+                >
                   {customer.status}
                 </span>
               </div>
 
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: '1fr 1fr 1fr', 
-                gap: '12px',
-                padding: '16px',
-                background: theme.colors.surface,
-                borderRadius: '8px',
-                marginBottom: '16px'
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '20px', fontWeight: '700', color: theme.colors.primary }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gap: "12px",
+                  padding: "16px",
+                  background: theme.colors.surface,
+                  borderRadius: "8px",
+                  marginBottom: "16px",
+                }}
+              >
+                <div style={{ textAlign: "center" }}>
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "700",
+                      color: theme.colors.primary,
+                    }}
+                  >
                     {customer.bookings}
                   </div>
-                  <div style={{ fontSize: '11px', color: theme.colors.textSecondary, marginTop: '4px' }}>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      color: theme.colors.textSecondary,
+                      marginTop: "4px",
+                    }}
+                  >
                     Bookings
                   </div>
                 </div>
-                <div style={{ textAlign: 'center', borderLeft: `1px solid ${theme.colors.border}`, borderRight: `1px solid ${theme.colors.border}` }}>
-                  <div style={{ fontSize: '20px', fontWeight: '700', color: theme.colors.success }}>
+                <div
+                  style={{
+                    textAlign: "center",
+                    borderLeft: `1px solid ${theme.colors.border}`,
+                    borderRight: `1px solid ${theme.colors.border}`,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "700",
+                      color: theme.colors.success,
+                    }}
+                  >
                     ${customer.totalSpent}
                   </div>
-                  <div style={{ fontSize: '11px', color: theme.colors.textSecondary, marginTop: '4px' }}>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      color: theme.colors.textSecondary,
+                      marginTop: "4px",
+                    }}
+                  >
                     Total Spent
                   </div>
                 </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '13px', fontWeight: '600', color: theme.colors.text }}>
-                    {new Date(customer.joinDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                <div style={{ textAlign: "center" }}>
+                  <div
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: "600",
+                      color: theme.colors.text,
+                    }}
+                  >
+                    {new Date(customer.joinDate).toLocaleDateString("en-US", {
+                      month: "short",
+                      year: "numeric",
+                    })}
                   </div>
-                  <div style={{ fontSize: '11px', color: theme.colors.textSecondary, marginTop: '4px' }}>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      color: theme.colors.textSecondary,
+                      marginTop: "4px",
+                    }}
+                  >
                     Joined
                   </div>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ display: "flex", gap: "8px" }}>
                 <button
                   onClick={() => {
                     setSelectedItem(customer);
-                    setModalType('customer');
+                    setModalType("customer");
                     setShowModal(true);
                   }}
                   style={{
                     flex: 1,
-                    padding: '10px',
+                    padding: "10px",
                     background: theme.colors.primary,
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '13px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '6px'
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "13px",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "6px",
                   }}
                 >
                   <Eye size={16} />
                   View Profile
                 </button>
                 <button
-                  onClick={() => deleteItem(customer.id, 'customer')}
+                  onClick={() => deleteItem(customer.id, "customer")}
                   style={{
-                    padding: '10px 12px',
+                    padding: "10px 12px",
                     background: theme.colors.danger,
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer'
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    cursor: "pointer",
                   }}
                 >
                   <Trash2 size={16} />
@@ -1290,155 +1406,260 @@ export const Customers = ({ customers, deleteItem, setSelectedItem, setModalType
 };
 
 // ==================== SERVICES COMPONENT ====================
-export const Services = ({ services, filterData }) => {
-  const filteredServices = filterData(services, 'services');
+export const Services = ({ services, filterData }: any) => {
+  const filteredServices = filterData(services, "services");
 
   return (
-    <div style={{ padding: '24px' }}>
-      <div style={{
-        background: theme.colors.surface,
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          marginBottom: '20px'
-        }}>
-          <h2 style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.text, margin: 0 }}>
+    <div style={{ padding: "24px" }}>
+      <div
+        style={{
+          background: theme.colors.surface,
+          borderRadius: "12px",
+          padding: "24px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: theme.colors.text,
+              margin: 0,
+            }}
+          >
             Service Categories ({filteredServices.length})
           </h2>
-          <button style={{
-            padding: '10px 20px',
-            background: theme.colors.primary,
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
+          <button
+            style={{
+              padding: "10px 20px",
+              background: theme.colors.primary,
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
             <Plus size={18} />
             Add Service
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
-          {filteredServices.map((service) => (
-            <div key={service.id} style={{
-              background: `linear-gradient(135deg, ${theme.colors.primary}15, ${theme.colors.success}15)`,
-              borderRadius: '12px',
-              padding: '24px',
-              border: `1px solid ${theme.colors.border}`,
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              <div style={{
-                position: 'absolute',
-                top: '-20px',
-                right: '-20px',
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                background: `${theme.colors.primary}20`,
-                zIndex: 0
-              }} />
-              
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {filteredServices.map((service: any) => (
+            <div
+              key={service.id}
+              style={{
+                background: `linear-gradient(135deg, ${theme.colors.primary}15, ${theme.colors.success}15)`,
+                borderRadius: "12px",
+                padding: "24px",
+                border: `1px solid ${theme.colors.border}`,
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-20px",
+                  right: "-20px",
+                  width: "80px",
+                  height: "80px",
+                  borderRadius: "50%",
+                  background: `${theme.colors.primary}20`,
+                  zIndex: 0,
+                }}
+              />
+
+              <div style={{ position: "relative", zIndex: 1 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "start",
+                    marginBottom: "16px",
+                  }}
+                >
                   <div>
-                    <div style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.text, marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: "700",
+                        color: theme.colors.text,
+                        marginBottom: "4px",
+                      }}
+                    >
                       {service.name}
                     </div>
-                    <div style={{ fontSize: '13px', color: theme.colors.textSecondary }}>
+                    <div
+                      style={{
+                        fontSize: "13px",
+                        color: theme.colors.textSecondary,
+                      }}
+                    >
                       {service.category}
                     </div>
                   </div>
-                  <div style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '12px',
-                    background: theme.colors.surface,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                  }}>
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "12px",
+                      background: theme.colors.surface,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                    }}
+                  >
                     <Briefcase size={24} color={theme.colors.primary} />
                   </div>
                 </div>
 
-                <div style={{ 
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '12px',
-                  marginBottom: '16px',
-                  padding: '16px',
-                  background: theme.colors.surface,
-                  borderRadius: '8px'
-                }}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "12px",
+                    marginBottom: "16px",
+                    padding: "16px",
+                    background: theme.colors.surface,
+                    borderRadius: "8px",
+                  }}
+                >
                   <div>
-                    <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: theme.colors.textSecondary,
+                        marginBottom: "4px",
+                      }}
+                    >
                       Base Price
                     </div>
-                    <div style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.success }}>
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: "700",
+                        color: theme.colors.success,
+                      }}
+                    >
                       ${service.basePrice}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: theme.colors.textSecondary,
+                        marginBottom: "4px",
+                      }}
+                    >
                       Bookings
                     </div>
-                    <div style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.primary }}>
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: "700",
+                        color: theme.colors.primary,
+                      }}
+                    >
                       {service.bookings}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: theme.colors.textSecondary,
+                        marginBottom: "4px",
+                      }}
+                    >
                       Workers
                     </div>
-                    <div style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.text }}>
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: "700",
+                        color: theme.colors.text,
+                      }}
+                    >
                       {service.workers}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: theme.colors.textSecondary,
+                        marginBottom: "4px",
+                      }}
+                    >
                       Rating
                     </div>
-                    <div style={{ fontSize: '16px', fontWeight: '700', color: theme.colors.text, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "700",
+                        color: theme.colors.text,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                      }}
+                    >
                       <Star size={14} fill="#F59E0B" color="#F59E0B" />
                       {service.rating}
                     </div>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <button style={{
-                    flex: 1,
-                    padding: '10px',
-                    background: theme.colors.primary,
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '13px',
-                    fontWeight: '600',
-                    cursor: 'pointer'
-                  }}>
-                    <Edit size={16} style={{ verticalAlign: 'middle', marginRight: '6px' }} />
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button
+                    style={{
+                      flex: 1,
+                      padding: "10px",
+                      background: theme.colors.primary,
+                      color: "white",
+                      border: "none",
+                      borderRadius: "8px",
+                      fontSize: "13px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Edit
+                      size={16}
+                      style={{ verticalAlign: "middle", marginRight: "6px" }}
+                    />
                     Edit
                   </button>
-                  <button style={{
-                    padding: '10px 12px',
-                    background: theme.colors.surface,
-                    border: `1px solid ${theme.colors.border}`,
-                    borderRadius: '8px',
-                    cursor: 'pointer'
-                  }}>
+                  <button
+                    style={{
+                      padding: "10px 12px",
+                      background: theme.colors.surface,
+                      border: `1px solid ${theme.colors.border}`,
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                    }}
+                  >
                     <Activity size={16} color={theme.colors.text} />
                   </button>
                 </div>
@@ -1453,111 +1674,180 @@ export const Services = ({ services, filterData }) => {
 
 // ==================== SETTINGS COMPONENT ====================
 export const SettingsPage = () => (
-  <div style={{ padding: '24px' }}>
-    <div style={{ maxWidth: '800px' }}>
-      <div style={{
-        background: theme.colors.surface,
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-        marginBottom: '20px'
-      }}>
-        <h2 style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.text, marginBottom: '20px' }}>
+  <div style={{ padding: "24px" }}>
+    <div style={{ maxWidth: "800px" }}>
+      <div
+        style={{
+          background: theme.colors.surface,
+          borderRadius: "12px",
+          padding: "24px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+          marginBottom: "20px",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "18px",
+            fontWeight: "700",
+            color: theme.colors.text,
+            marginBottom: "20px",
+          }}
+        >
           General Settings
         </h2>
-        
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: theme.colors.text, marginBottom: '8px' }}>
+
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: theme.colors.text,
+              marginBottom: "8px",
+            }}
+          >
             Platform Name
           </label>
           <input
             type="text"
             defaultValue="ServiceApp"
             style={{
-              width: '100%',
-              padding: '10px 12px',
+              width: "100%",
+              padding: "10px 12px",
               border: `1px solid ${theme.colors.border}`,
-              borderRadius: '8px',
-              fontSize: '14px'
+              borderRadius: "8px",
+              fontSize: "14px",
             }}
           />
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: theme.colors.text, marginBottom: '8px' }}>
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: theme.colors.text,
+              marginBottom: "8px",
+            }}
+          >
             Support Email
           </label>
           <input
             type="email"
             defaultValue="support@serviceapp.com"
             style={{
-              width: '100%',
-              padding: '10px 12px',
+              width: "100%",
+              padding: "10px 12px",
               border: `1px solid ${theme.colors.border}`,
-              borderRadius: '8px',
-              fontSize: '14px'
+              borderRadius: "8px",
+              fontSize: "14px",
             }}
           />
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: theme.colors.text, marginBottom: '8px' }}>
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: theme.colors.text,
+              marginBottom: "8px",
+            }}
+          >
             Commission Rate (%)
           </label>
           <input
             type="number"
             defaultValue="15"
             style={{
-              width: '100%',
-              padding: '10px 12px',
+              width: "100%",
+              padding: "10px 12px",
               border: `1px solid ${theme.colors.border}`,
-              borderRadius: '8px',
-              fontSize: '14px'
+              borderRadius: "8px",
+              fontSize: "14px",
             }}
           />
         </div>
 
-        <button style={{
-          padding: '10px 24px',
-          background: theme.colors.primary,
-          color: 'white',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '14px',
-          fontWeight: '600',
-          cursor: 'pointer'
-        }}>
+        <button
+          style={{
+            padding: "10px 24px",
+            background: theme.colors.primary,
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            fontSize: "14px",
+            fontWeight: "600",
+            cursor: "pointer",
+          }}
+        >
           Save Changes
         </button>
       </div>
 
-      <div style={{
-        background: theme.colors.surface,
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-      }}>
-        <h2 style={{ fontSize: '18px', fontWeight: '700', color: theme.colors.text, marginBottom: '20px' }}>
+      <div
+        style={{
+          background: theme.colors.surface,
+          borderRadius: "12px",
+          padding: "24px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "18px",
+            fontWeight: "700",
+            color: theme.colors.text,
+            marginBottom: "20px",
+          }}
+        >
           Notification Settings
         </h2>
-        
-        {['New Booking', 'Booking Completed', 'Worker Registration', 'Payment Received'].map((item, idx) => (
-          <div key={idx} style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '16px 0',
-            borderBottom: idx < 3 ? `1px solid ${theme.colors.border}` : 'none'
-          }}>
+
+        {[
+          "New Booking",
+          "Booking Completed",
+          "Worker Registration",
+          "Payment Received",
+        ].map((item, idx) => (
+          <div
+            key={idx}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "16px 0",
+              borderBottom:
+                idx < 3 ? `1px solid ${theme.colors.border}` : "none",
+            }}
+          >
             <div>
-              <div style={{ fontSize: '14px', fontWeight: '600', color: theme.colors.text }}>
+              <div
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  color: theme.colors.text,
+                }}
+              >
                 {item}
               </div>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginTop: "4px",
+                }}
+              >
                 Receive notifications for {item.toLowerCase()}
               </div>
             </div>
-            <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', cursor: 'pointer' }} />
+            <input
+              type="checkbox"
+              defaultChecked
+              style={{ width: "20px", height: "20px", cursor: "pointer" }}
+            />
           </div>
         ))}
       </div>
@@ -1566,324 +1856,751 @@ export const SettingsPage = () => (
 );
 
 // ==================== MODAL COMPONENT ====================
-export const Modal = ({ showModal, setShowModal, selectedItem, modalType }) => {
+export const Modal = ({
+  showModal,
+  setShowModal,
+  selectedItem,
+  modalType,
+}: any) => {
   if (!showModal || !selectedItem) return null;
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'rgba(0,0,0,0.5)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      padding: '20px'
-    }} onClick={() => setShowModal(false)}>
-      <div style={{
-        background: theme.colors.surface,
-        borderRadius: '16px',
-        padding: '32px',
-        maxWidth: '600px',
-        width: '100%',
-        maxHeight: '80vh',
-        overflowY: 'auto'
-      }} onClick={(e) => e.stopPropagation()}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-          <h2 style={{ fontSize: '20px', fontWeight: '700', color: theme.colors.text, margin: 0 }}>
-            {modalType === 'booking' ? 'Booking Details' : modalType === 'worker' ? 'Worker Details' : 'Customer Details'}
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: "rgba(0,0,0,0.5)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1000,
+        padding: "20px",
+      }}
+      onClick={() => setShowModal(false)}
+    >
+      <div
+        style={{
+          background: theme.colors.surface,
+          borderRadius: "16px",
+          padding: "32px",
+          maxWidth: "600px",
+          width: "100%",
+          maxHeight: "80vh",
+          overflowY: "auto",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "24px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "20px",
+              fontWeight: "700",
+              color: theme.colors.text,
+              margin: 0,
+            }}
+          >
+            {modalType === "booking"
+              ? "Booking Details"
+              : modalType === "worker"
+              ? "Worker Details"
+              : "Customer Details"}
           </h2>
           <button
             onClick={() => setShowModal(false)}
             style={{
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '8px'
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
             }}
           >
             <X size={24} color={theme.colors.text} />
           </button>
         </div>
 
-        {modalType === 'booking' && (
+        {modalType === "booking" && (
           <div>
-            <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: `1px solid ${theme.colors.border}` }}>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Booking ID</div>
-              <div style={{ fontSize: '16px', fontWeight: '600', color: theme.colors.text }}>#{selectedItem.id}</div>
+            <div
+              style={{
+                marginBottom: "16px",
+                paddingBottom: "16px",
+                borderBottom: `1px solid ${theme.colors.border}`,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginBottom: "4px",
+                }}
+              >
+                Booking ID
+              </div>
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  color: theme.colors.text,
+                }}
+              >
+                #{selectedItem.id}
+              </div>
             </div>
-            <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: `1px solid ${theme.colors.border}` }}>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Customer</div>
-              <div style={{ fontSize: '16px', fontWeight: '600', color: theme.colors.text }}>{selectedItem.customer}</div>
-              <div style={{ fontSize: '14px', color: theme.colors.textSecondary, marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div
+              style={{
+                marginBottom: "16px",
+                paddingBottom: "16px",
+                borderBottom: `1px solid ${theme.colors.border}`,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginBottom: "4px",
+                }}
+              >
+                Customer
+              </div>
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  color: theme.colors.text,
+                }}
+              >
+                {selectedItem.customer}
+              </div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: theme.colors.textSecondary,
+                  marginTop: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <PhoneCall size={14} />
                 {selectedItem.phone}
               </div>
-              <div style={{ fontSize: '14px', color: theme.colors.textSecondary, marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: theme.colors.textSecondary,
+                  marginTop: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <MapPin size={14} />
                 {selectedItem.address}
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px', paddingBottom: '16px', borderBottom: `1px solid ${theme.colors.border}` }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "16px",
+                marginBottom: "16px",
+                paddingBottom: "16px",
+                borderBottom: `1px solid ${theme.colors.border}`,
+              }}
+            >
               <div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Service</div>
-                <div style={{ fontSize: '16px', fontWeight: '600', color: theme.colors.text }}>{selectedItem.service}</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginBottom: "4px",
+                  }}
+                >
+                  Service
+                </div>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: theme.colors.text,
+                  }}
+                >
+                  {selectedItem.service}
+                </div>
               </div>
               <div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Worker</div>
-                <div style={{ fontSize: '16px', fontWeight: '600', color: theme.colors.text }}>{selectedItem.worker}</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginBottom: "4px",
+                  }}
+                >
+                  Worker
+                </div>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: theme.colors.text,
+                  }}
+                >
+                  {selectedItem.worker}
+                </div>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "16px",
+                marginBottom: "24px",
+              }}
+            >
               <div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Date</div>
-                <div style={{ fontSize: '16px', fontWeight: '600', color: theme.colors.text }}>{new Date(selectedItem.date).toLocaleDateString()}</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginBottom: "4px",
+                  }}
+                >
+                  Date
+                </div>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: theme.colors.text,
+                  }}
+                >
+                  {new Date(selectedItem.date).toLocaleDateString()}
+                </div>
               </div>
               <div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Amount</div>
-                <div style={{ fontSize: '20px', fontWeight: '700', color: theme.colors.success }}>${selectedItem.amount}</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginBottom: "4px",
+                  }}
+                >
+                  Amount
+                </div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    color: theme.colors.success,
+                  }}
+                >
+                  ${selectedItem.amount}
+                </div>
               </div>
             </div>
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '8px' }}>Status</div>
-              <span style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
-                fontSize: '14px',
-                fontWeight: '600',
-                background: getStatusBg(selectedItem.status),
-                color: getStatusColor(selectedItem.status),
-                textTransform: 'capitalize'
-              }}>
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginBottom: "8px",
+                }}
+              >
+                Status
+              </div>
+              <span
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "20px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  background: getStatusBg(selectedItem.status),
+                  color: getStatusColor(selectedItem.status),
+                  textTransform: "capitalize",
+                }}
+              >
                 {selectedItem.status}
               </span>
             </div>
           </div>
         )}
 
-        {modalType === 'worker' && (
+        {modalType === "worker" && (
           <div>
-            <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', alignItems: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                background: theme.colors.primary,
-                color: 'white',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '32px',
-                fontWeight: '700'
-              }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "16px",
+                marginBottom: "24px",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  borderRadius: "50%",
+                  background: theme.colors.primary,
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "32px",
+                  fontWeight: "700",
+                }}
+              >
                 {selectedItem.name.charAt(0)}
               </div>
               <div>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.text, marginBottom: '4px' }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.text,
+                    marginBottom: "4px",
+                  }}
+                >
                   {selectedItem.name}
                 </div>
-                <div style={{ fontSize: '16px', color: theme.colors.textSecondary }}>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    color: theme.colors.textSecondary,
+                  }}
+                >
                   {selectedItem.category}
                 </div>
-                <div style={{ marginTop: '8px' }}>
-                  <span style={{
-                    padding: '4px 12px',
-                    borderRadius: '20px',
-                    fontSize: '12px',
-                    fontWeight: '600',
-                    background: selectedItem.status === 'active' ? '#D1FAE5' : '#FEE2E2',
-                    color: selectedItem.status === 'active' ? theme.colors.success : theme.colors.danger,
-                    textTransform: 'capitalize'
-                  }}>
+                <div style={{ marginTop: "8px" }}>
+                  <span
+                    style={{
+                      padding: "4px 12px",
+                      borderRadius: "20px",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      background:
+                        selectedItem.status === "active"
+                          ? "#D1FAE5"
+                          : "#FEE2E2",
+                      color:
+                        selectedItem.status === "active"
+                          ? theme.colors.success
+                          : theme.colors.danger,
+                      textTransform: "capitalize",
+                    }}
+                  >
                     {selectedItem.status}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr 1fr', 
-              gap: '16px',
-              padding: '20px',
-              background: theme.colors.background,
-              borderRadius: '12px',
-              marginBottom: '24px'
-            }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.text, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap: "16px",
+                padding: "20px",
+                background: theme.colors.background,
+                borderRadius: "12px",
+                marginBottom: "24px",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.text,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "4px",
+                  }}
+                >
                   <Star size={20} fill="#F59E0B" color="#F59E0B" />
                   {selectedItem.rating}
                 </div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>Rating</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginTop: "4px",
+                  }}
+                >
+                  Rating
+                </div>
               </div>
-              <div style={{ textAlign: 'center', borderLeft: `1px solid ${theme.colors.border}`, borderRight: `1px solid ${theme.colors.border}` }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.primary }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  borderLeft: `1px solid ${theme.colors.border}`,
+                  borderRight: `1px solid ${theme.colors.border}`,
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.primary,
+                  }}
+                >
                   {selectedItem.jobs}
                 </div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>Jobs Done</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginTop: "4px",
+                  }}
+                >
+                  Jobs Done
+                </div>
               </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.success }}>
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.success,
+                  }}
+                >
                   ${selectedItem.earnings.toLocaleString()}
                 </div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>Total Earnings</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginTop: "4px",
+                  }}
+                >
+                  Total Earnings
+                </div>
               </div>
             </div>
 
-            <div style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: `1px solid ${theme.colors.border}` }}>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '8px' }}>Contact Information</div>
-              <div style={{ fontSize: '14px', color: theme.colors.text, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div
+              style={{
+                marginBottom: "16px",
+                paddingBottom: "16px",
+                borderBottom: `1px solid ${theme.colors.border}`,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginBottom: "8px",
+                }}
+              >
+                Contact Information
+              </div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: theme.colors.text,
+                  marginBottom: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
                 <PhoneCall size={16} color={theme.colors.primary} />
                 {selectedItem.phone}
               </div>
-              <div style={{ fontSize: '14px', color: theme.colors.text, display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: theme.colors.text,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
                 <Mail size={16} color={theme.colors.primary} />
                 {selectedItem.email}
               </div>
             </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '4px' }}>Joined Date</div>
-              <div style={{ fontSize: '16px', fontWeight: '600', color: theme.colors.text }}>
-                {new Date(selectedItem.joinDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginBottom: "4px",
+                }}
+              >
+                Joined Date
+              </div>
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  color: theme.colors.text,
+                }}
+              >
+                {new Date(selectedItem.joinDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button style={{
-                flex: 1,
-                padding: '12px',
-                background: theme.colors.primary,
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}>
-                <PhoneCall size={16} style={{ verticalAlign: 'middle', marginRight: '6px' }} />
+            <div style={{ display: "flex", gap: "12px" }}>
+              <button
+                style={{
+                  flex: 1,
+                  padding: "12px",
+                  background: theme.colors.primary,
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+              >
+                <PhoneCall
+                  size={16}
+                  style={{ verticalAlign: "middle", marginRight: "6px" }}
+                />
                 Contact Worker
               </button>
-              <button style={{
-                flex: 1,
-                padding: '12px',
-                background: theme.colors.background,
-                color: theme.colors.text,
-                border: `1px solid ${theme.colors.border}`,
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}>
-                <Edit size={16} style={{ verticalAlign: 'middle', marginRight: '6px' }} />
+              <button
+                style={{
+                  flex: 1,
+                  padding: "12px",
+                  background: theme.colors.background,
+                  color: theme.colors.text,
+                  border: `1px solid ${theme.colors.border}`,
+                  borderRadius: "8px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+              >
+                <Edit
+                  size={16}
+                  style={{ verticalAlign: "middle", marginRight: "6px" }}
+                />
                 Edit Profile
               </button>
             </div>
           </div>
         )}
 
-        {modalType === 'customer' && (
+        {modalType === "customer" && (
           <div>
-            <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', alignItems: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.success})`,
-                color: 'white',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '32px',
-                fontWeight: '700'
-              }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "16px",
+                marginBottom: "24px",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  borderRadius: "50%",
+                  background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.success})`,
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "32px",
+                  fontWeight: "700",
+                }}
+              >
                 {selectedItem.name.charAt(0)}
               </div>
               <div>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.text, marginBottom: '4px' }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.text,
+                    marginBottom: "4px",
+                  }}
+                >
                   {selectedItem.name}
                 </div>
-                <div style={{ fontSize: '14px', color: theme.colors.textSecondary, display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    color: theme.colors.textSecondary,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    marginBottom: "4px",
+                  }}
+                >
                   <Mail size={14} />
                   {selectedItem.email}
                 </div>
-                <div style={{ fontSize: '14px', color: theme.colors.textSecondary, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    color: theme.colors.textSecondary,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
                   <PhoneCall size={14} />
                   {selectedItem.phone}
                 </div>
               </div>
             </div>
 
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr 1fr', 
-              gap: '16px',
-              padding: '20px',
-              background: theme.colors.background,
-              borderRadius: '12px',
-              marginBottom: '24px'
-            }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.primary }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap: "16px",
+                padding: "20px",
+                background: theme.colors.background,
+                borderRadius: "12px",
+                marginBottom: "24px",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.primary,
+                  }}
+                >
                   {selectedItem.bookings}
                 </div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>Total Bookings</div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginTop: "4px",
+                  }}
+                >
+                  Total Bookings
+                </div>
               </div>
-              <div style={{ textAlign: 'center', borderLeft: `1px solid ${theme.colors.border}`, borderRight: `1px solid ${theme.colors.border}` }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: theme.colors.success }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  borderLeft: `1px solid ${theme.colors.border}`,
+                  borderRight: `1px solid ${theme.colors.border}`,
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: theme.colors.success,
+                  }}
+                >
                   ${selectedItem.totalSpent}
                 </div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>Total Spent</div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '16px', fontWeight: '700', color: theme.colors.text }}>
-                  {new Date(selectedItem.joinDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginTop: "4px",
+                  }}
+                >
+                  Total Spent
                 </div>
-                <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginTop: '4px' }}>Member Since</div>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    color: theme.colors.text,
+                  }}
+                >
+                  {new Date(selectedItem.joinDate).toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: theme.colors.textSecondary,
+                    marginTop: "4px",
+                  }}
+                >
+                  Member Since
+                </div>
               </div>
             </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', color: theme.colors.textSecondary, marginBottom: '8px' }}>Account Status</div>
-              <span style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
-                fontSize: '14px',
-                fontWeight: '600',
-                background: selectedItem.status === 'active' ? '#D1FAE5' : '#FEE2E2',
-                color: selectedItem.status === 'active' ? theme.colors.success : theme.colors.danger,
-                textTransform: 'capitalize'
-              }}>
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  fontSize: "12px",
+                  color: theme.colors.textSecondary,
+                  marginBottom: "8px",
+                }}
+              >
+                Account Status
+              </div>
+              <span
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "20px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  background:
+                    selectedItem.status === "active" ? "#D1FAE5" : "#FEE2E2",
+                  color:
+                    selectedItem.status === "active"
+                      ? theme.colors.success
+                      : theme.colors.danger,
+                  textTransform: "capitalize",
+                }}
+              >
                 {selectedItem.status}
               </span>
             </div>
 
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button style={{
-                flex: 1,
-                padding: '12px',
-                background: theme.colors.primary,
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}>
+            <div style={{ display: "flex", gap: "12px" }}>
+              <button
+                style={{
+                  flex: 1,
+                  padding: "12px",
+                  background: theme.colors.primary,
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+              >
                 View Booking History
               </button>
-              <button style={{
-                padding: '12px',
-                background: theme.colors.background,
-                color: theme.colors.text,
-                border: `1px solid ${theme.colors.border}`,
-                borderRadius: '8px',
-                cursor: 'pointer'
-              }}>
+              <button
+                style={{
+                  padding: "12px",
+                  background: theme.colors.background,
+                  color: theme.colors.text,
+                  border: `1px solid ${theme.colors.border}`,
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                }}
+              >
                 <Mail size={18} />
               </button>
             </div>
